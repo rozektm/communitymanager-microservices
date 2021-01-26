@@ -69,11 +69,13 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "django_celery_beat",
+    "graphene_django",
+    "django_filters",
 ]
 
 LOCAL_APPS = [
     "communitymanager_3.users.apps.UsersConfig",
-    # Your stuff: custom apps go here
+    "communitymanager_3.members.apps.MembersConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -288,5 +290,7 @@ ACCOUNT_ADAPTER = "communitymanager_3.users.adapters.AccountAdapter"
 SOCIALACCOUNT_ADAPTER = "communitymanager_3.users.adapters.SocialAccountAdapter"
 
 
-# Your stuff...
+# graphene-django
 # ------------------------------------------------------------------------------
+GRAPHENE = {"SCHEMA": "config.schema.schema"}
+API_BROWSER = True

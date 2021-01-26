@@ -12,3 +12,12 @@ REDIS_URL=redis://redis:6379/0
 # Flower
 CELERY_FLOWER_USER=lEFznHjzqbXyAEfcunXqRxQfEQMmelNf
 CELERY_FLOWER_PASSWORD=G2VYyzOjiaySgNLGpdPWABZaCDSS4HDfgGfS9pJeVj02AYOxBUBnjWz7yWqPSaU9
+
+# WebexTeams
+# ------------------------------------------------------------------------------
+CISCO_WEBEX_ACCESS_TOKEN=MTU3MjlmMDMtYzA5Zi00Yzk1LTk5NmEtYzcxZDIxZjA3NmMyNzYwM2NiNjktMDI4_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f
+
+# Sentry
+# ------------------------------------------------------------------------------
+SENTRY_END_POINT=https://08d8e20fb8fd47b692780e3616e161b4@o510461.ingest.sentry.io/5606163
+PII=yes

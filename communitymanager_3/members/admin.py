@@ -1,11 +1,39 @@
 from django.contrib import admin
-from django.contrib.auth import admin as auth_admin
 
-from communitymanager_3.members.models import Member
+from communitymanager_3.members.models import (
+    Community,
+    CommunityAttributes,
+    Member,
+    Membership,
+    Metadata,
+)
+
+
+@admin.register(Metadata)
+class MetadataAdmin(admin.ModelAdmin):
+
+    list_display = ["type", "value"]
 
 
 @admin.register(Member)
-class UserAdmin(auth_admin.UserAdmin):
+class MemberAdmin(admin.ModelAdmin):
 
-    list_display = ["first_name", "email"]
-    search_fields = ["first_name"]
+    list_display = ["name", "email"]
+
+
+@admin.register(Community)
+class CommunityAdmin(admin.ModelAdmin):
+
+    list_display = ["name", "abreviation"]
+
+
+@admin.register(Membership)
+class MembershipAdmin(admin.ModelAdmin):
+
+    list_display = ["level", "community", "member"]
+
+
+@admin.register(CommunityAttributes)
+class CommunityAttributesAdmin(admin.ModelAdmin):
+
+    list_display = ["community", "type", "value"]

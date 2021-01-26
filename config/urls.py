@@ -5,6 +5,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
+from graphene_django.views import GraphQLView
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
@@ -17,6 +18,8 @@ urlpatterns = [
     path("users/", include("communitymanager_3.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    # TODO: https://docs.graphene-python.org/projects/django/en/latest/installation/#csrf-exempt
+    path("api/", GraphQLView.as_view(graphiql=settings.API_BROWSER)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:
     # Static file serving when using Gunicorn + Uvicorn for local web socket development
@@ -48,3 +51,11 @@ if settings.DEBUG:
         import debug_toolbar
 
         urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns
+
+# For GraphQL Postman testing
+if settings.DEBUG:
+    from django.views.decorators.csrf import csrf_exempt
+
+    urlpatterns += [
+        path("graphql/", csrf_exempt(GraphQLView.as_view(graphiql=True))),
+    ]

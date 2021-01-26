@@ -66,3 +66,28 @@ INSTALLED_APPS += ["django_extensions"]  # noqa F405
 CELERY_TASK_EAGER_PROPAGATES = True
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+# django-seed
+# ------------------------------------------------------------------------------
+# https://github.com/brobin/django-seed
+INSTALLED_APPS += ["django_seed"]  # noqa F405
+
+
+# WebexTeams
+# ------------------------------------------------------------------------------
+CISCO_WEBEX_BASE_URL = "https://webexapis.com/v1/"
+CISCO_WEBEX_ACCESS_TOKEN = env("CISCO_WEBEX_ACCESS_TOKEN")
+
+# Sentry
+# ------------------------------------------------------------------------------
+import sentry_sdk  # noqa
+from sentry_sdk.integrations.django import DjangoIntegration  # noqa
+
+sentry_sdk.init(
+    dsn=env("SENTRY_END_POINT"),
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=env.bool("PII", False),
+)
